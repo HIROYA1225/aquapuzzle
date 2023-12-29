@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 47;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -23,6 +23,9 @@
 		33A0AD492B0867B200BA5C16 /* MonsterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A0AD482B0867B200BA5C16 /* MonsterView.swift */; };
 		33A3DCEA2B01AAD1003268B8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3DCE92B01AAD1003268B8 /* HomeViewController.swift */; };
 		33D06C012AFF886500D80BB7 /* MonsterProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D06C002AFF886500D80BB7 /* MonsterProvider.swift */; };
+		FC5512D72B3E46050027FDA6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC5512D62B3E46050027FDA6 /* GoogleService-Info.plist */; };
+		FC5512DA2B3E498C0027FDA6 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FC5512D92B3E498C0027FDA6 /* FirebaseAuth */; };
+		FC5512DC2B3E498C0027FDA6 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FC5512DB2B3E498C0027FDA6 /* FirebaseFirestore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,7 @@
 		33A0AD482B0867B200BA5C16 /* MonsterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonsterView.swift; sourceTree = "<group>"; };
 		33A3DCE92B01AAD1003268B8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		33D06C002AFF886500D80BB7 /* MonsterProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonsterProvider.swift; sourceTree = "<group>"; };
+		FC5512D62B3E46050027FDA6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC5512DA2B3E498C0027FDA6 /* FirebaseAuth in Frameworks */,
+				FC5512DC2B3E498C0027FDA6 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +110,7 @@
 		1AC563DF193DCE6000402286 /* swift-2048 */ = {
 			isa = PBXGroup;
 			children = (
+				FC5512D62B3E46050027FDA6 /* GoogleService-Info.plist */,
 				1AEF46CF1BAE736400119D81 /* Launch Screen.storyboard */,
 				1AC563E2193DCE6000402286 /* AppDelegate.swift */,
 				1AC563E4193DCE6000402286 /* ViewController.swift */,
@@ -181,6 +188,10 @@
 			dependencies = (
 			);
 			name = "swift-2048";
+			packageProductDependencies = (
+				FC5512D92B3E498C0027FDA6 /* FirebaseAuth */,
+				FC5512DB2B3E498C0027FDA6 /* FirebaseFirestore */,
+			);
 			productName = "swift-2048";
 			productReference = 1AC563DD193DCE6000402286 /* swift-2048.app */;
 			productType = "com.apple.product-type.application";
@@ -235,6 +246,9 @@
 				Base,
 			);
 			mainGroup = 1AC563D4193DCE6000402286;
+			packageReferences = (
+				FC5512D82B3E498C0027FDA6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 1AC563DE193DCE6000402286 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -251,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AEF46D01BAE736400119D81 /* Launch Screen.storyboard in Resources */,
+				FC5512D72B3E46050027FDA6 /* GoogleService-Info.plist in Resources */,
 				1AC563E8193DCE6000402286 /* Main.storyboard in Resources */,
 				1AC563EA193DCE6000402286 /* Images.xcassets in Resources */,
 			);
@@ -413,7 +428,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -425,7 +441,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "swift-2048/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "f3nghuang.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
@@ -439,7 +458,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "swift-2048/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "f3nghuang.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
@@ -458,7 +480,11 @@
 				);
 				INFOPLIST_FILE = "swift-2048Tests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				METAL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "f3nghuang.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -475,7 +501,11 @@
 				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "swift-2048Tests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				METAL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "f3nghuang.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -516,6 +546,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FC5512D82B3E498C0027FDA6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.19.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FC5512D92B3E498C0027FDA6 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC5512D82B3E498C0027FDA6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		FC5512DB2B3E498C0027FDA6 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC5512D82B3E498C0027FDA6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1AC563D5193DCE6000402286 /* Project object */;
 }
