@@ -27,6 +27,8 @@
 		FC5512DA2B3E498C0027FDA6 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FC5512D92B3E498C0027FDA6 /* FirebaseAuth */; };
 		FC5512DC2B3E498C0027FDA6 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FC5512DB2B3E498C0027FDA6 /* FirebaseFirestore */; };
 		FC5512DF2B3E50190027FDA6 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FC5512DE2B3E50190027FDA6 /* GoogleSignInSwift */; };
+		FC5512E12B3E6B7C0027FDA6 /* loginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5512E02B3E6B7C0027FDA6 /* loginView.swift */; };
+		FC5512E42B3F94F60027FDA6 /* LoginUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5512E32B3F94F50027FDA6 /* LoginUserInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,8 @@
 		33A3DCE92B01AAD1003268B8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		33D06C002AFF886500D80BB7 /* MonsterProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonsterProvider.swift; sourceTree = "<group>"; };
 		FC5512D62B3E46050027FDA6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FC5512E02B3E6B7C0027FDA6 /* loginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginView.swift; sourceTree = "<group>"; };
+		FC5512E32B3F94F50027FDA6 /* LoginUserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginUserInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,7 +119,9 @@
 				FC5512D62B3E46050027FDA6 /* GoogleService-Info.plist */,
 				1AEF46CF1BAE736400119D81 /* Launch Screen.storyboard */,
 				1AC563E2193DCE6000402286 /* AppDelegate.swift */,
+				FC5512E02B3E6B7C0027FDA6 /* loginView.swift */,
 				1AC563E4193DCE6000402286 /* ViewController.swift */,
+				FC5512E22B3F94A80027FDA6 /* ViewModels */,
 				1AC563E6193DCE6000402286 /* Main.storyboard */,
 				33A3DCE92B01AAD1003268B8 /* HomeViewController.swift */,
 				1AC563E9193DCE6000402286 /* Images.xcassets */,
@@ -172,6 +178,14 @@
 				1AE8BEF5193EF4B6007592BA /* TileView.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		FC5512E22B3F94A80027FDA6 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FC5512E32B3F94F50027FDA6 /* LoginUserInfo.swift */,
+			);
+			name = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,6 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC5512E42B3F94F60027FDA6 /* LoginUserInfo.swift in Sources */,
 				1AE8BEF4193EF260007592BA /* NumberTileGame.swift in Sources */,
 				1AF8F0B619403AA400A7049E /* AccessoryViews.swift in Sources */,
 				1AE8BEF6193EF4B6007592BA /* TileView.swift in Sources */,
@@ -301,6 +316,7 @@
 				1AE8BEF0193EEE24007592BA /* GameboardView.swift in Sources */,
 				33D06C012AFF886500D80BB7 /* MonsterProvider.swift in Sources */,
 				33A0AD492B0867B200BA5C16 /* MonsterView.swift in Sources */,
+				FC5512E12B3E6B7C0027FDA6 /* loginView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

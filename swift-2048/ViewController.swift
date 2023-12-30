@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class ViewController: UIViewController {
                             
@@ -20,5 +21,13 @@ class ViewController: UIViewController {
         self.present(game, animated: true, completion: nil)
     }
     
-
+    // Log inボタン押下時
+    @IBAction func loginButtonTapped(_ sender: Any) {
+        // UIKitからSwiftUIへの画面遷移
+        let swiftUIView = loginView()
+        let hostingController = UIHostingController(rootView: swiftUIView)
+        // ログイン画面へ遷移
+        self.present(hostingController, animated: true, completion: nil)
+    }
+    
 }
