@@ -28,16 +28,6 @@ var monsterBox = [mijinko, planaria, clione, mendako, tatsunootoshigo, harisenbo
 
 //モンスター パーティ
 var monsterParty = [mijinko, clione, mendako, harisenbon, akaei, ikkaku, ryugunotsukai, megalodon, jinbeizame, daiouika]
-var monsterCostLimit = 20
-var monsterCost = 0
-
-//敵のインスタンス
-let umibouzu = Enemy(HP: 5, attack: 5, recovery: 0, imageName: "umibouzu.png")
-let kraken = Enemy(HP: 5, attack: 10, recovery: 0, imageName: "kraken.png")
-let leviathan = Enemy(HP: 100, attack: 15, recovery: 5, imageName: "fantasy_leviathan.png")
-
-//敵の組み合わせ配列
-var enemyParty = [umibouzu, kraken, leviathan]
 
 //モンスター 構造体
 struct Monster {
@@ -46,14 +36,6 @@ struct Monster {
     var cost: Int   // コスト
     var HP: Int     // HP
     var tileNum: Int   // タイル数字
-    var attack: Int    // 攻撃力
-    var recovery: Int  // 回復力
-    var imageName: String  //画像ファイル名
-}
-
-//敵 構造体
-struct Enemy {
-    var HP: Int     // HP
     var attack: Int    // 攻撃力
     var recovery: Int  // 回復力
     var imageName: String  //画像ファイル名

@@ -16,16 +16,14 @@ protocol GameModelProtocol : class {
   func insertTile(at location: (Int, Int), withValue value: Int)
 }
 
-var defaultHP = enemyParty[0].HP
 var mergedTileNum = 0
-var countMerge = 0
 
 /// A class representing the game state and game logic for swift-2048. It is owned by a NumberTileGame view controller.
 class GameModel : NSObject {
   let dimension : Int
   let threshold : Int
     
-  var score : Int = defaultHP {
+  var score : Int = 0 {
     didSet {
       delegate.scoreChanged(to: score)
     }
@@ -52,20 +50,11 @@ class GameModel : NSObject {
 
   /// ゲーム状態をリセット
     func resetState(defaultHP: Int) {
-    score = defaultHP
+    score = 0
    // gameboard.setAll(to: .empty)
    // queue.removeAll(keepingCapacity: true)
     timer.invalidate()
   }
-    
-//    /// 新しい敵が出現したときの処理
-//    func newEnemy() {
-//      score = defaultHP
-////      gameboard.setAll(to: .empty)
-//      queue.removeAll(keepingCapacity: true)
-//      timer.invalidate()
-//    }
-
 
   /// Order the game model to perform a move (because the user swiped their finger). The queue enforces a delay of a few
   /// milliseconds between each move.
@@ -279,23 +268,6 @@ class GameModel : NSObject {
     // タイルが合体したときの処理メソッド
     func actionWhenMerge(v:Int){
         mergedTileNum = Int(log2(Double(v))) - 1  // 合体したタイルの値取得
-//        score -= monsterParty[mergedTileNum].attack  // score:敵HPを減らす
-//        let label = UILabel(frame: CGRect(x: vcWidth * 0.2, y: (vcHeight - vcWidth) * 0.2, width: 20, height: 20))
-//        label.font = UIFont.systemFont(ofSize: 10.0)
-//        label.text = " \(monsterParty[mergedTileNum].attack)"      // 表示する文字を代入する.
-//        label.textColor = UIColor.black      // 文字の色
-//        label.font = UIFont.systemFont(ofSize: 16.0)      // フォントの設定をする.
-//        label.textAlignment = textAlignment     // 中央揃え
-//        view.addSubview(label)      // Viewに追加する
-
-        //        countMerge += 1
-                      
-              // タイル数字に応じたタイル画像の設定
-//            if mergedTileNum > 0{  // タイル数字:1以上の場合
-//            tileImage = UIImageView(image: UIImage(named: monsterParty[mergedTileNum - 1].imageName))    // タイル数字に応じたモンスターの画像
-//            }
-              
-//            arrayMonster.append(monsterOfTileNum(tileNum: mergedTileNum /*Int.random(in: 1..<11)*/))  // モンスター配列に1つ値を追加 tileNumは一時的にランダム
     }
 
   //------------------------------------------------------------------------------------------------------------------//

@@ -13,15 +13,11 @@ protocol ScoreViewProtocol {
   func scoreChanged(to s: Int)
 }
 
-protocol MyHPViewProtocol {
- // func scoreChanged(to s: Int)
-}
-
 /// スコアビュー(敵HP)表示
 class ScoreView : UIView, ScoreViewProtocol {
-  var score : Int = defaultHP {
+  var score : Int = 0 {
     didSet {
-      label.text = "HP: \(score)"
+      label.text = "score: \(score)"
     }
   }
 

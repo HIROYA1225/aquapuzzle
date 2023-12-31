@@ -10,8 +10,6 @@ import UIKit
 
 let vcWidth: CGFloat = UIScreen.main.bounds.size.width  // 画面の横の大きさを取得
 let vcHeight: CGFloat = UIScreen.main.bounds.size.height    // 画面の縦の大きさを取得
-//let myDefaultHP = 1000    // 自分の初期のHP
-//var myHP = myDefaultHP  // 自分の現在のHP
 var arrayMonster: [UIImageView] = []
 
 /// A view controller representing the swift-2048 game. It serves mostly to tie a GameModel and a GameboardView
@@ -39,15 +37,7 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
 
     // Amount that the vertical alignment of the component views should differ from if they were centered
     let verticalViewOffset: CGFloat = 0.0
-
-//    let recoveryButton = UIButton()    // HP回復ボタン
-//    let recoveryAmount = 10 // 回復量
-
-    var countEnemy = 0
-    var arrayEnemy: [UIImageView] = []
     var countMonster = 0
-    
-//    var damage = enemyParty[0].attack  // 敵の攻撃により受けるダメージ
 
   //dimensionとthreshould
   init(dimension d: Int, threshold t: Int) {
@@ -110,21 +100,16 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
 
     //ゲームのセットアップ
     func setupGame() {
-        // 戦闘背景画像を設定
+        // 水槽背景画像を設定
         let imageViewBattleBackground = UIImageView(frame: CGRect(x: 0, y: (vcHeight - vcWidth) /  6, width: vcWidth, height: vcWidth)) // 背景画像の大きさを設定
         imageViewBattleBackground.image = UIImage(named: "bg_natural_ocean.jpg") // 画像を設定
         self.view.addSubview(imageViewBattleBackground) // 背景画像を追加する
-//
-//        // ゲームボード背景画像を設定
+
+        // ゲームボード背景画像を設定
         let imageViewGameBoardBackground = UIImageView(frame: CGRect(x: 0, y: (vcHeight - vcWidth) /  6 + vcWidth, width: vcWidth, height: vcWidth * 0.83)) // 背景画像の大きさを設定
         imageViewGameBoardBackground.image = UIImage(named: "bg_pattern_ishigaki.jpg") // 画像を設定
         self.view.addSubview(imageViewGameBoardBackground) // 背景画像を追加する
-        
-//        //初期敵モンスター表示
-//        let firstEnemy = enemyImageView(enemyImageName: enemyParty[0].imageName)
-//        view.addSubview(firstEnemy)
-//        arrayEnemy.append(firstEnemy)
-        
+                
         // This nested function provides the x-position for a component view
         func xPositionToCenterView(_ v: UIView) -> CGFloat {
           let viewWidth = v.bounds.size.width
@@ -154,8 +139,6 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
           radius: 6)
 //        scoreView.score = defaultHP
     
-//        myHPView(HP: myHP)   //自分のHPを表示
-
         // ゲームボードの作成
         let padding: CGFloat = dimension > 5 ? thinPadding : thickPadding
         let v1 = boardWidth - padding*(CGFloat(dimension + 1))
@@ -191,52 +174,21 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
         let m = model!
         m.insertTileAtRandomLocation(withValue: 2)
         m.insertTileAtRandomLocation(withValue: 2)
-        
-//        //回復ボタン
-//        //let recoveryBottonWidth: CGFloat = 40
-//        recoveryButton.frame = CGRect(x:5, y:vcHeight * 0.6, width:40, height:40)           // 位置とサイズ
-//        recoveryButton.setTitle("♡", for:UIControl.State.normal)        // タイトル
-//        recoveryButton.titleLabel?.font =  UIFont.systemFont(ofSize: 30)        // フォントサイズ
-//        recoveryButton.backgroundColor = UIColor.systemPink        // 背景色
-//        recoveryButton.addTarget(self, action: #selector(NumberTileGameViewController.recoveryButtonTapped(sender:)), for: .touchUpInside)
-//        view.addSubview(recoveryButton)    // Viewにボタンを追加
-        
     } // setupGame終わり
     
-//    //回復ボタンタップ処理
-//    @objc  func recoveryButtonTapped(sender : Any) {
-//        myHP += recoveryAmount
-//        if myHP >= myDefaultHP{
-//            myHP = myDefaultHP
-//        }
-//        myHPView(HP: myHP)   //自分のHPを表示
-//    }
-
   // スワイプした後の処理
     func followUp() {
         assert(model != nil)
         let m = model!
-          // モンスターの表示と削除
-        arrayMonster.append(monsterOfTileNum(tileNum: /*mergedTileNum*/ Int.random(in: 1..<11)))  // モンスター配列に1つ値を追加 tileNumは一時的にランダム
+          // 生物の表示と削除
+        arrayMonster.append(monsterOfTileNum(tileNum: /*mergedTileNum*/ Int.random(in: 1..<11)))  // 生物配列に1つ値を追加 tileNumは一時的にランダム
         if arrayMonster.count > 0{
-            view.addSubview(arrayMonster[countMonster]) // 配列追加したモンスターの画像を表示する
+            view.addSubview(arrayMonster[countMonster]) // 配列追加した生物の画像を表示する
         }
                     countMonster += 1
         if countMonster > 3 { // 同時に3体まで表示
-            arrayMonster[Int.random(in: 0..<countMonster)].isHidden = true  // 表示されているモンスターの中からランダムで消す
+            arrayMonster[Int.random(in: 0..<countMonster)].isHidden = true  // 表示されている生物の中からランダムで消す
         }
-        
-      
-//      // 確率で敵の攻撃を受ける
-//    //  if Int.random(in: 0..<3) == 0{    // 1/3の確率
-//          myHP -= self.damage     // ダメージ分自分のHPが減る
-//   //   }
-//        self.myHPView(HP: myHP)   //自分のHPを表示
-        
-//        // 受けたダメージを一瞬表示する
-//        damageLabel(x: vcWidth*0.77, y: vcWidth * 1.15, text: "-\(damage)" )
-//        // 敵に与えたダメージを一瞬表示する
-//        damageLabel(x: vcWidth*0.25, y: 70, text: "-\(monsterParty[0].attack)")
 
       // 負けたときのアラート
       if m.userHasLost() {
@@ -253,25 +205,11 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
 //    let (userWon, _) = m.userHasWon()
 //    if userWon {
         // TODO: alert delegate we won
-//        arrayEnemy[countEnemy].isHidden = true  // 前の敵画像消去
-
-//        // ステージ途中の敵を倒したとき
-//        if countEnemy < enemyParty.count - 1{
-//            //次の敵出現、敵のステータス更新
-//            arrayEnemy.append(enemyImageView(enemyImageName: enemyParty[countEnemy+1].imageName))  // モンスター配列に1つ値を追加 次の敵の画像
-//            resetGame(defaultHP: enemyParty[countEnemy+1].HP)   // 次の敵のHP
-//            damage = enemyParty[countEnemy+1].attack   // 次の敵の攻撃力
-//            view.addSubview(arrayEnemy[countEnemy+1])     // 次の敵の画像表示
-//            countEnemy += 1  //countEnemy 1増やす
-//        }else{  //ステージ最後の敵を倒したとき
-        
 //        let alertView = UIAlertView()   //アラート
 //        alertView.title = "Victory"
 //        alertView.message = "Stage Clear!"
 //        alertView.addButton(withTitle: "OK")
 //        alertView.show()
-        
-//        }
 
       // TODO: At this point we should stall the game until the user taps 'New Game' (which hasn't been implemented yet)
 //      return
@@ -280,7 +218,6 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
     // 勝敗がつかない場合、タイルを追加して続行
     let randomVal = Int(arc4random_uniform(10))
     m.insertTileAtRandomLocation(withValue: randomVal == 1 ? 4 : 2)
-
   }
     
   // 上下左右コマンド
@@ -331,47 +268,6 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
         }
       })
   }
-    
-//    // 敵画像を設定してImageViewを返す関数
-//    func enemyImageView(enemyImageName: String) -> UIImageView{
-//        let enemyImageView = UIImageView(frame: CGRect(x: vcWidth * 0.2, y: (vcHeight - vcWidth) * 0.2, width: vcWidth * 0.6, height: vcWidth * 0.6)) // 敵画像の位置と大きさを設定
-//        enemyImageView.image = UIImage(named: enemyImageName) // 画像を設定
-//        return enemyImageView // imageViewを返す
-//    }
-        
-//    //ダメージを一瞬表示する関数
-//    func damageLabel(x:CGFloat, y:CGFloat, text:String){
-//        let attackLabel = UILabel(frame: CGRect(x: x, y: y, width: 200, height: 30))
-//        attackLabel.font = UIFont.systemFont(ofSize: 20.0)
-//        attackLabel.text = text     // 表示する文字を代入する 要修正:
-//        attackLabel.textColor = UIColor.red      // 文字の色
-//        attackLabel.font = UIFont.systemFont(ofSize: 16.0)      // フォントの設定をする.
-//        attackLabel.textAlignment = NSTextAlignment.left     // 中央揃え
-//        attackLabel.layer.shadowOpacity = 200      // 影の濃さを設定する.
-//        view.addSubview(attackLabel)      // Viewに追加する
-//        // 少し経ったらダメージ表示を消す
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//            attackLabel.isHidden = true
-//        }
-//    }
-    
-//    // 自分のHP表示関数
-//    func myHPView(HP: Int){
-//        var label = UILabel(frame: CGRect(x: vcWidth/4, y: vcWidth * 1.15, width: vcWidth/2, height: vcWidth * 0.09))
-//        label.font = UIFont.systemFont(ofSize: 20.0)
-//        label.text = "HP: \(HP) / \(myDefaultHP)"      // 表示する文字を代入する.
-//        label.textColor = UIColor.white      // 文字の色
-//        label.layer.masksToBounds = true      // 角に丸みをつける.
-//        label.layer.cornerRadius = 6.0      // 丸みのサイズを設定する.
-//        label.layer.borderWidth = 2      // 枠線の太さを設定する.
-//        label.layer.borderColor = UIColor.red.cgColor      // 枠線の色
-//        label.font = UIFont.systemFont(ofSize: 16.0)      // フォントの設定をする.
-//        label.textAlignment = NSTextAlignment.center      // 中央揃え
-//        //label.layer.shadowOpacity = 10      // 影の濃さを設定する.
-//        label.backgroundColor = UIColor.black      // 背景色
-//        //label.delegate = self   // Delegateを自身に設定する
-//        view.addSubview(label)      // Viewに追加する
-//    }
 
   // Protocol
   // スコア変化
@@ -405,16 +301,16 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
   }
 }
 
-// タイル数字に応じたモンスターのImageViewを返す
+// タイル数字に応じた生物のImageViewを返す
 func monsterOfTileNum(tileNum: Int) -> UIImageView{
-    let monsterSize = 30 + (tileNum - 1) * 12    // タイル数字に応じたモンスターの大きさ
-    return  monsterImageView(imageName: monsterParty[tileNum - 1].imageName, monsterSize: monsterSize)    // モンスターのImageView
+    let monsterSize = 30 + (tileNum - 1) * 12    // タイル数字に応じた生物の大きさ
+    return  monsterImageView(imageName: monsterParty[tileNum - 1].imageName, monsterSize: monsterSize)    // 生物のImageView
 }
 
-// 指定された画像ファイルとサイズでモンスターのImageViewを返す
-func monsterImageView(imageName: String, monsterSize: Int) -> UIImageView{    // 引数：画像ファイル名, モンスターの大きさ 戻り値：imageView
-    let interval = 20   // モンスター出現位置の間隔
-    let monsterImageView = UIImageView(frame: CGRect(x: interval * Int.random(in: 1..<300 / interval) , y: interval * Int.random(in: 280 / interval..<400 / interval), width: monsterSize, height: monsterSize)) // モンスター出現位置と大きさを設定
+// 指定された画像ファイルとサイズで生物のImageViewを返す
+func monsterImageView(imageName: String, monsterSize: Int) -> UIImageView{    // 引数：画像ファイル名, 生物の大きさ 戻り値：imageView
+    let interval = 20   // 生物出現位置の間隔
+    let monsterImageView = UIImageView(frame: CGRect(x: interval * Int.random(in: 1..<300 / interval) , y: interval * Int.random(in: 100 / interval..<360 / interval), width: monsterSize, height: monsterSize)) // 生物出現位置と大きさを設定
     monsterImageView.image = UIImage(named: imageName) // 画像を設定
     return monsterImageView
 }

@@ -45,26 +45,7 @@ class HomeViewController: UIViewController {
         monsterPartyLabel.font = UIFont.systemFont(ofSize: 16.0)      // フォントの設定をする.
         monsterPartyLabel.backgroundColor = UIColor.gray      // 背景色
         view.addSubview(monsterPartyLabel)      // Viewに追加する
-        
-        // モンスター合計コスト表示
-        for i in 0..<monsterParty.count{
-            monsterCost += monsterParty[i].cost
-        }
-        
-        let monsterCostLabel = UILabel(frame: CGRect(x: vcWidth * 0.35, y: monsterPartyY-30, width: vcWidth * 0.3, height: 30))
-        monsterCostLabel.layer.masksToBounds = true      // 角に丸みをつける.
-        monsterCostLabel.layer.cornerRadius = 6.0      // 丸みのサイズを設定する.
-        monsterCostLabel.layer.borderWidth = 2      // 枠線の太さを設定する.
-        monsterCostLabel.layer.borderColor = UIColor.black.cgColor      // 枠線の色
-        monsterCostLabel.text = " コスト: \(monsterCost) / \(monsterCostLimit)"      // 表示する文字を代入する.
-        monsterCostLabel.textColor = UIColor.white      // 文字の色
-        monsterCostLabel.font = UIFont.systemFont(ofSize: 16.0)      // フォントの設定をする.
-        monsterCostLabel.backgroundColor = UIColor.gray      // 背景色
-        view.addSubview(monsterCostLabel)      // Viewに追加する
-        for i in 0..<monsterParty.count{
-            monsterCost += monsterParty[i].cost
-        }
-        
+
         // モンスターパーティボタン
         for i in 0..<2 {    //2行
             for j in 0..<5 {    //1行に5体表示
