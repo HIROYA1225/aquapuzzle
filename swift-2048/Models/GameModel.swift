@@ -58,13 +58,13 @@ class GameModel : NSObject {
     timer.invalidate()
   }
     
-    /// 新しい敵が出現したときの処理
-    func newEnemy() {
-      score = defaultHP
-//      gameboard.setAll(to: .empty)
-      queue.removeAll(keepingCapacity: true)
-      timer.invalidate()
-    }
+//    /// 新しい敵が出現したときの処理
+//    func newEnemy() {
+//      score = defaultHP
+////      gameboard.setAll(to: .empty)
+//      queue.removeAll(keepingCapacity: true)
+//      timer.invalidate()
+//    }
 
 
   /// Order the game model to perform a move (because the user swiped their finger). The queue enforces a delay of a few
@@ -175,7 +175,6 @@ class GameModel : NSObject {
     // 敗北条件
   func userHasLost() -> Bool {
       if gameboardEmptySpots().isEmpty{ // タイルが動かせなくなった場合
-      }else if myHP < 1{    // 自分のHPが0になった場合
       }else{
           return false
       }
@@ -184,8 +183,8 @@ class GameModel : NSObject {
     for i in 0..<dimension {
       for j in 0..<dimension {
         switch gameboard[i, j] {
-        case .empty:    // タイルが動かせる状態でも自分のHPが0になれば負けなので不要
-          assert(true, "Gameboard reported itself as full, but we still found an empty tile. This is a logic error.")   // タイルが動かせる状態でも自分のHPが0になれば負けなので不要
+        case .empty:
+          assert(true, "Gameboard reported itself as full, but we still found an empty tile. This is a logic error.")
         case let .tile(v):
           if tileBelowHasSameValue(location: (i, j), value: v) ||
             tileToRightHasSameValue(location: (i, j), value: v)
@@ -280,7 +279,7 @@ class GameModel : NSObject {
     // タイルが合体したときの処理メソッド
     func actionWhenMerge(v:Int){
         mergedTileNum = Int(log2(Double(v))) - 1  // 合体したタイルの値取得
-        score -= monsterParty[mergedTileNum].attack  // score:敵HPを減らす
+//        score -= monsterParty[mergedTileNum].attack  // score:敵HPを減らす
 //        let label = UILabel(frame: CGRect(x: vcWidth * 0.2, y: (vcHeight - vcWidth) * 0.2, width: 20, height: 20))
 //        label.font = UIFont.systemFont(ofSize: 10.0)
 //        label.text = " \(monsterParty[mergedTileNum].attack)"      // 表示する文字を代入する.

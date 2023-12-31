@@ -10,8 +10,8 @@ import UIKit
 
 let vcWidth: CGFloat = UIScreen.main.bounds.size.width  // 画面の横の大きさを取得
 let vcHeight: CGFloat = UIScreen.main.bounds.size.height    // 画面の縦の大きさを取得
-let myDefaultHP = 1000    // 自分の初期のHP
-var myHP = myDefaultHP  // 自分の現在のHP
+//let myDefaultHP = 1000    // 自分の初期のHP
+//var myHP = myDefaultHP  // 自分の現在のHP
 var arrayMonster: [UIImageView] = []
 
 /// A view controller representing the swift-2048 game. It serves mostly to tie a GameModel and a GameboardView
@@ -40,14 +40,14 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
     // Amount that the vertical alignment of the component views should differ from if they were centered
     let verticalViewOffset: CGFloat = 0.0
 
-    let recoveryButton = UIButton()    // HP回復ボタン
-    let recoveryAmount = 10 // 回復量
+//    let recoveryButton = UIButton()    // HP回復ボタン
+//    let recoveryAmount = 10 // 回復量
 
     var countEnemy = 0
     var arrayEnemy: [UIImageView] = []
     var countMonster = 0
     
-    var damage = enemyParty[0].attack  // 敵の攻撃により受けるダメージ
+//    var damage = enemyParty[0].attack  // 敵の攻撃により受けるダメージ
 
   //dimensionとthreshould
   init(dimension d: Int, threshold t: Int) {
@@ -120,10 +120,10 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
         imageViewGameBoardBackground.image = UIImage(named: "bg_pattern_ishigaki.jpg") // 画像を設定
         self.view.addSubview(imageViewGameBoardBackground) // 背景画像を追加する
         
-        //初期敵モンスター表示
-        let firstEnemy = enemyImageView(enemyImageName: enemyParty[0].imageName)
-        view.addSubview(firstEnemy)
-        arrayEnemy.append(firstEnemy)
+//        //初期敵モンスター表示
+//        let firstEnemy = enemyImageView(enemyImageName: enemyParty[0].imageName)
+//        view.addSubview(firstEnemy)
+//        arrayEnemy.append(firstEnemy)
         
         // This nested function provides the x-position for a component view
         func xPositionToCenterView(_ v: UIView) -> CGFloat {
@@ -152,9 +152,9 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
           textColor: UIColor.white,
           font: UIFont(name: "HelveticaNeue-Bold", size: 16.0) ?? UIFont.systemFont(ofSize: 16.0),
           radius: 6)
-        scoreView.score = defaultHP
+//        scoreView.score = defaultHP
     
-        myHPView(HP: myHP)   //自分のHPを表示
+//        myHPView(HP: myHP)   //自分のHPを表示
 
         // ゲームボードの作成
         let padding: CGFloat = dimension > 5 ? thinPadding : thickPadding
@@ -192,25 +192,25 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
         m.insertTileAtRandomLocation(withValue: 2)
         m.insertTileAtRandomLocation(withValue: 2)
         
-        //回復ボタン
-        //let recoveryBottonWidth: CGFloat = 40
-        recoveryButton.frame = CGRect(x:5, y:vcHeight * 0.6, width:40, height:40)           // 位置とサイズ
-        recoveryButton.setTitle("♡", for:UIControl.State.normal)        // タイトル
-        recoveryButton.titleLabel?.font =  UIFont.systemFont(ofSize: 30)        // フォントサイズ
-        recoveryButton.backgroundColor = UIColor.systemPink        // 背景色
-        recoveryButton.addTarget(self, action: #selector(NumberTileGameViewController.recoveryButtonTapped(sender:)), for: .touchUpInside)
-        view.addSubview(recoveryButton)    // Viewにボタンを追加
+//        //回復ボタン
+//        //let recoveryBottonWidth: CGFloat = 40
+//        recoveryButton.frame = CGRect(x:5, y:vcHeight * 0.6, width:40, height:40)           // 位置とサイズ
+//        recoveryButton.setTitle("♡", for:UIControl.State.normal)        // タイトル
+//        recoveryButton.titleLabel?.font =  UIFont.systemFont(ofSize: 30)        // フォントサイズ
+//        recoveryButton.backgroundColor = UIColor.systemPink        // 背景色
+//        recoveryButton.addTarget(self, action: #selector(NumberTileGameViewController.recoveryButtonTapped(sender:)), for: .touchUpInside)
+//        view.addSubview(recoveryButton)    // Viewにボタンを追加
         
     } // setupGame終わり
     
-    //回復ボタンタップ処理
-    @objc  func recoveryButtonTapped(sender : Any) {
-        myHP += recoveryAmount
-        if myHP >= myDefaultHP{
-            myHP = myDefaultHP
-        }
-        myHPView(HP: myHP)   //自分のHPを表示
-    }
+//    //回復ボタンタップ処理
+//    @objc  func recoveryButtonTapped(sender : Any) {
+//        myHP += recoveryAmount
+//        if myHP >= myDefaultHP{
+//            myHP = myDefaultHP
+//        }
+//        myHPView(HP: myHP)   //自分のHPを表示
+//    }
 
   // スワイプした後の処理
     func followUp() {
@@ -227,16 +227,16 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
         }
         
       
-      // 確率で敵の攻撃を受ける
-    //  if Int.random(in: 0..<3) == 0{    // 1/3の確率
-          myHP -= self.damage     // ダメージ分自分のHPが減る
-   //   }
-        self.myHPView(HP: myHP)   //自分のHPを表示
+//      // 確率で敵の攻撃を受ける
+//    //  if Int.random(in: 0..<3) == 0{    // 1/3の確率
+//          myHP -= self.damage     // ダメージ分自分のHPが減る
+//   //   }
+//        self.myHPView(HP: myHP)   //自分のHPを表示
         
-        // 受けたダメージを一瞬表示する
-        damageLabel(x: vcWidth*0.77, y: vcWidth * 1.15, text: "-\(damage)" )
-        // 敵に与えたダメージを一瞬表示する
-        damageLabel(x: vcWidth*0.25, y: 70, text: "-\(monsterParty[0].attack)")
+//        // 受けたダメージを一瞬表示する
+//        damageLabel(x: vcWidth*0.77, y: vcWidth * 1.15, text: "-\(damage)" )
+//        // 敵に与えたダメージを一瞬表示する
+//        damageLabel(x: vcWidth*0.25, y: 70, text: "-\(monsterParty[0].attack)")
 
       // 負けたときのアラート
       if m.userHasLost() {
@@ -250,30 +250,32 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
       }
     
       // 勝ったとき
-    let (userWon, _) = m.userHasWon()
-    if userWon {
+//    let (userWon, _) = m.userHasWon()
+//    if userWon {
         // TODO: alert delegate we won
-        arrayEnemy[countEnemy].isHidden = true  // 前の敵画像消去
+//        arrayEnemy[countEnemy].isHidden = true  // 前の敵画像消去
 
-        // ステージ途中の敵を倒したとき
-        if countEnemy < enemyParty.count - 1{
-            //次の敵出現、敵のステータス更新
-            arrayEnemy.append(enemyImageView(enemyImageName: enemyParty[countEnemy+1].imageName))  // モンスター配列に1つ値を追加 次の敵の画像
-            resetGame(defaultHP: enemyParty[countEnemy+1].HP)   // 次の敵のHP
-            damage = enemyParty[countEnemy+1].attack   // 次の敵の攻撃力
-            view.addSubview(arrayEnemy[countEnemy+1])     // 次の敵の画像表示
-            countEnemy += 1  //countEnemy 1増やす
-        }else{  //ステージ最後の敵を倒したとき
-            let alertView = UIAlertView()   //アラート
-            alertView.title = "Victory"
-            alertView.message = "Stage Clear!"
-            alertView.addButton(withTitle: "OK")
-            alertView.show()
-        }
+//        // ステージ途中の敵を倒したとき
+//        if countEnemy < enemyParty.count - 1{
+//            //次の敵出現、敵のステータス更新
+//            arrayEnemy.append(enemyImageView(enemyImageName: enemyParty[countEnemy+1].imageName))  // モンスター配列に1つ値を追加 次の敵の画像
+//            resetGame(defaultHP: enemyParty[countEnemy+1].HP)   // 次の敵のHP
+//            damage = enemyParty[countEnemy+1].attack   // 次の敵の攻撃力
+//            view.addSubview(arrayEnemy[countEnemy+1])     // 次の敵の画像表示
+//            countEnemy += 1  //countEnemy 1増やす
+//        }else{  //ステージ最後の敵を倒したとき
+        
+//        let alertView = UIAlertView()   //アラート
+//        alertView.title = "Victory"
+//        alertView.message = "Stage Clear!"
+//        alertView.addButton(withTitle: "OK")
+//        alertView.show()
+        
+//        }
 
       // TODO: At this point we should stall the game until the user taps 'New Game' (which hasn't been implemented yet)
-      return
-    }
+//      return
+//    }
 
     // 勝敗がつかない場合、タイルを追加して続行
     let randomVal = Int(arc4random_uniform(10))
@@ -330,45 +332,46 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
       })
   }
     
-    // 敵画像を設定してImageViewを返す関数
-    func enemyImageView(enemyImageName: String) -> UIImageView{
-        let enemyImageView = UIImageView(frame: CGRect(x: vcWidth * 0.2, y: (vcHeight - vcWidth) * 0.2, width: vcWidth * 0.6, height: vcWidth * 0.6)) // 敵画像の位置と大きさを設定
-        enemyImageView.image = UIImage(named: enemyImageName) // 画像を設定
-        return enemyImageView // imageViewを返す
-    }
+//    // 敵画像を設定してImageViewを返す関数
+//    func enemyImageView(enemyImageName: String) -> UIImageView{
+//        let enemyImageView = UIImageView(frame: CGRect(x: vcWidth * 0.2, y: (vcHeight - vcWidth) * 0.2, width: vcWidth * 0.6, height: vcWidth * 0.6)) // 敵画像の位置と大きさを設定
+//        enemyImageView.image = UIImage(named: enemyImageName) // 画像を設定
+//        return enemyImageView // imageViewを返す
+//    }
         
-    func damageLabel(x:CGFloat, y:CGFloat, text:String){
-        let attackLabel = UILabel(frame: CGRect(x: x, y: y, width: 200, height: 30))
-        attackLabel.font = UIFont.systemFont(ofSize: 20.0)
-        attackLabel.text = text     // 表示する文字を代入する 要修正:
-        attackLabel.textColor = UIColor.red      // 文字の色
-        attackLabel.font = UIFont.systemFont(ofSize: 16.0)      // フォントの設定をする.
-        attackLabel.textAlignment = NSTextAlignment.left     // 中央揃え
-        attackLabel.layer.shadowOpacity = 200      // 影の濃さを設定する.
-        view.addSubview(attackLabel)      // Viewに追加する
-        // 少し経ったらダメージ表示を消す
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            attackLabel.isHidden = true
-        }
-    }
+//    //ダメージを一瞬表示する関数
+//    func damageLabel(x:CGFloat, y:CGFloat, text:String){
+//        let attackLabel = UILabel(frame: CGRect(x: x, y: y, width: 200, height: 30))
+//        attackLabel.font = UIFont.systemFont(ofSize: 20.0)
+//        attackLabel.text = text     // 表示する文字を代入する 要修正:
+//        attackLabel.textColor = UIColor.red      // 文字の色
+//        attackLabel.font = UIFont.systemFont(ofSize: 16.0)      // フォントの設定をする.
+//        attackLabel.textAlignment = NSTextAlignment.left     // 中央揃え
+//        attackLabel.layer.shadowOpacity = 200      // 影の濃さを設定する.
+//        view.addSubview(attackLabel)      // Viewに追加する
+//        // 少し経ったらダメージ表示を消す
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//            attackLabel.isHidden = true
+//        }
+//    }
     
-    // 自分のHP表示関数
-    func myHPView(HP: Int){
-        var label = UILabel(frame: CGRect(x: vcWidth/4, y: vcWidth * 1.15, width: vcWidth/2, height: vcWidth * 0.09))
-        label.font = UIFont.systemFont(ofSize: 20.0)
-        label.text = "HP: \(HP) / \(myDefaultHP)"      // 表示する文字を代入する.
-        label.textColor = UIColor.white      // 文字の色
-        label.layer.masksToBounds = true      // 角に丸みをつける.
-        label.layer.cornerRadius = 6.0      // 丸みのサイズを設定する.
-        label.layer.borderWidth = 2      // 枠線の太さを設定する.
-        label.layer.borderColor = UIColor.red.cgColor      // 枠線の色
-        label.font = UIFont.systemFont(ofSize: 16.0)      // フォントの設定をする.
-        label.textAlignment = NSTextAlignment.center      // 中央揃え
-        //label.layer.shadowOpacity = 10      // 影の濃さを設定する.
-        label.backgroundColor = UIColor.black      // 背景色
-        //label.delegate = self   // Delegateを自身に設定する
-        view.addSubview(label)      // Viewに追加する
-    }
+//    // 自分のHP表示関数
+//    func myHPView(HP: Int){
+//        var label = UILabel(frame: CGRect(x: vcWidth/4, y: vcWidth * 1.15, width: vcWidth/2, height: vcWidth * 0.09))
+//        label.font = UIFont.systemFont(ofSize: 20.0)
+//        label.text = "HP: \(HP) / \(myDefaultHP)"      // 表示する文字を代入する.
+//        label.textColor = UIColor.white      // 文字の色
+//        label.layer.masksToBounds = true      // 角に丸みをつける.
+//        label.layer.cornerRadius = 6.0      // 丸みのサイズを設定する.
+//        label.layer.borderWidth = 2      // 枠線の太さを設定する.
+//        label.layer.borderColor = UIColor.red.cgColor      // 枠線の色
+//        label.font = UIFont.systemFont(ofSize: 16.0)      // フォントの設定をする.
+//        label.textAlignment = NSTextAlignment.center      // 中央揃え
+//        //label.layer.shadowOpacity = 10      // 影の濃さを設定する.
+//        label.backgroundColor = UIColor.black      // 背景色
+//        //label.delegate = self   // Delegateを自身に設定する
+//        view.addSubview(label)      // Viewに追加する
+//    }
 
   // Protocol
   // スコア変化

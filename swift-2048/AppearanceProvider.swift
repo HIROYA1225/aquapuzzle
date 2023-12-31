@@ -62,12 +62,12 @@ class AppearanceProvider: AppearanceProviderProtocol {
 
   // タイル数字の文字の色
   func numberColor(_ value: Int) -> UIColor {
-    //switch value {
-//    case 2, 4:
-//      return UIColor(red: 119.0/255.0, green: 110.0/255.0, blue: 101.0/255.0, alpha: 1.0)
-//    default:
+    switch value {
+    case 2, 4:
+      return UIColor(red: 119.0/255.0, green: 110.0/255.0, blue: 101.0/255.0, alpha: 1.0)
+    default:
       return UIColor.gray
-   // }
+    }
   }
 
   // タイル数字のフォント
