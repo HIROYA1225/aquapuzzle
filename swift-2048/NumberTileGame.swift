@@ -109,7 +109,12 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
         let imageViewGameBoardBackground = UIImageView(frame: CGRect(x: 0, y: (vcHeight - vcWidth) /  6 + vcWidth, width: vcWidth, height: vcWidth * 0.83)) // 背景画像の大きさを設定
         imageViewGameBoardBackground.image = UIImage(named: "bg_pattern_ishigaki.jpg") // 画像を設定
         self.view.addSubview(imageViewGameBoardBackground) // 背景画像を追加する
-                
+        
+        // 初期生き物を設定
+        let imageViewFish1 = UIImageView(frame: CGRect(x: (vcWidth-vcWidth*0.2)/2, y: vcWidth*0.6, width: vcWidth*0.2, height: vcWidth*0.2)) // 画像の位置と大きさを設定
+        imageViewFish1.image = UIImage(named: "fish_clione.png") // 画像を設定
+        self.view.addSubview(imageViewFish1) // 画像を追加する
+
         // This nested function provides the x-position for a component view
         func xPositionToCenterView(_ v: UIView) -> CGFloat {
           let viewWidth = v.bounds.size.width
@@ -137,7 +142,7 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
           textColor: UIColor.white,
           font: UIFont(name: "HelveticaNeue-Bold", size: 16.0) ?? UIFont.systemFont(ofSize: 16.0),
           radius: 6)
-//        scoreView.score = defaultHP
+        scoreView.score = 0
     
         // ゲームボードの作成
         let padding: CGFloat = dimension > 5 ? thinPadding : thickPadding
@@ -181,14 +186,14 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
         assert(model != nil)
         let m = model!
           // 生物の表示と削除
-        arrayMonster.append(monsterOfTileNum(tileNum: /*mergedTileNum*/ Int.random(in: 1..<11)))  // 生物配列に1つ値を追加 tileNumは一時的にランダム
-        if arrayMonster.count > 0{
-            view.addSubview(arrayMonster[countMonster]) // 配列追加した生物の画像を表示する
-        }
-                    countMonster += 1
-        if countMonster > 3 { // 同時に3体まで表示
-            arrayMonster[Int.random(in: 0..<countMonster)].isHidden = true  // 表示されている生物の中からランダムで消す
-        }
+//        arrayMonster.append(monsterOfTileNum(tileNum: /*mergedTileNum*/ Int.random(in: 1..<11)))  // 生物配列に1つ値を追加 tileNumは一時的にランダム
+//        if arrayMonster.count > 0{
+//            view.addSubview(arrayMonster[countMonster]) // 配列追加した生物の画像を表示する
+//        }
+//                    countMonster += 1
+//        if countMonster > 3 { // 同時に3体まで表示
+//            arrayMonster[Int.random(in: 0..<countMonster)].isHidden = true  // 表示されている生物の中からランダムで消す
+//        }
 
       // 負けたときのアラート
       if m.userHasLost() {
@@ -200,16 +205,27 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
   //      alertView.addButton(withTitle: "OK")
         alertView.show()
       }
-    
-      // 勝ったとき
-//    let (userWon, _) = m.userHasWon()
-//    if userWon {
-        // TODO: alert delegate we won
-//        let alertView = UIAlertView()   //アラート
-//        alertView.title = "Victory"
-//        alertView.message = "Stage Clear!"
-//        alertView.addButton(withTitle: "OK")
-//        alertView.show()
+//        // 勝ったとき
+//      let (userWon, _) = m.userHasWon()
+//      if userWon {
+//          // TODO: alert delegate we won
+//          arrayEnemy[countEnemy].isHidden = true  // 前の敵画像消去
+//
+//          // ステージ途中の敵を倒したとき
+//          if countEnemy < enemyParty.count - 1{
+//              //次の敵出現、敵のステータス更新
+//              arrayEnemy.append(enemyImageView(enemyImageName: enemyParty[countEnemy+1].imageName))  // モンスター配列に1つ値を追加 次の敵の画像
+//              resetGame(defaultHP: enemyParty[countEnemy+1].HP)   // 次の敵のHP
+//              damage = enemyParty[countEnemy+1].attack   // 次の敵の攻撃力
+//              view.addSubview(arrayEnemy[countEnemy+1])     // 次の敵の画像表示
+//              countEnemy += 1  //countEnemy 1増やす
+//          }else{  //ステージ最後の敵を倒したとき
+//              let alertView = UIAlertView()   //アラート
+//              alertView.title = "Victory"
+//              alertView.message = "Stage Clear!"
+//              alertView.addButton(withTitle: "OK")
+//              alertView.show()
+//          }
 
       // TODO: At this point we should stall the game until the user taps 'New Game' (which hasn't been implemented yet)
 //      return

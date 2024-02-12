@@ -51,12 +51,7 @@ class AppearanceProvider: AppearanceProviderProtocol {
     func tileImageView(_ value: Int) -> UIImageView {
         let convertedValue = Int(log2(Double(value))) - 1
         let imageView = UIImageView()
-        // タイル数字に応じたタイル画像の設定
-        if convertedValue == 0{ // タイル数字:0の場合
-            imageView.image = UIImage(named: "taisaibou.png")   // タイル数字:0の画像設定
-        }else{  // タイル数字:1以上の場合
-            imageView.image = UIImage(named: monsterParty[convertedValue-1].imageName)   // タイル数字に応じたモンスターの画像
-        }
+        imageView.image = UIImage(named: "shinkai_mendako_open.png")
         return imageView
     }
 

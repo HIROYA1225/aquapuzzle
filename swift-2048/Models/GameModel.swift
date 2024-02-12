@@ -268,6 +268,7 @@ class GameModel : NSObject {
     // タイルが合体したときの処理メソッド
     func actionWhenMerge(v:Int){
         mergedTileNum = Int(log2(Double(v))) - 1  // 合体したタイルの値取得
+        score += mergedTileNum
     }
 
   //------------------------------------------------------------------------------------------------------------------//
