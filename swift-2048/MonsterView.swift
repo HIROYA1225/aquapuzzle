@@ -19,7 +19,7 @@ class MonsterViewController: ViewController {
         monsterNameLabel.layer.cornerRadius = 6.0      // 丸みのサイズを設定する.
         monsterNameLabel.layer.borderWidth = 2      // 枠線の太さを設定する.
         monsterNameLabel.layer.borderColor = UIColor.black.cgColor      // 枠線の色
-        monsterNameLabel.text = "\(monsterBox[9].imageName)" + "   ☆\(monsterBox[9].rare)"      // 表示する文字を代入する.
+        monsterNameLabel.text = "\(creatureBook[9].imageName)" + "   ☆\(creatureBook[9].rarity)"      // 表示する文字を代入する.
         monsterNameLabel.textColor = UIColor.white      // 文字の色
         monsterNameLabel.textAlignment = NSTextAlignment.center     // 中央揃え
         monsterNameLabel.font = UIFont.systemFont(ofSize: 16.0)      // フォントの設定をする.
@@ -28,7 +28,7 @@ class MonsterViewController: ViewController {
         
         // モンスター画像を設定
         let monsterImageView = UIImageView(frame: CGRect(x: (vcWidth-vcWidth*0.7)/2, y: (vcHeight - vcWidth) /  5, width: vcWidth*0.7, height: vcWidth*0.7)) // 画像の大きさを設定
-        monsterImageView.image = UIImage(named: monsterBox[9].imageName) // 画像を設定
+        monsterImageView.image = UIImage(named: creatureBook[9].imageName) // 画像を設定
         self.view.addSubview(monsterImageView) // 画像を表示する
         
         // パラメータ

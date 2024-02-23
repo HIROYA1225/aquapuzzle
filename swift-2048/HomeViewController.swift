@@ -46,20 +46,20 @@ class HomeViewController: UIViewController {
         monsterPartyLabel.backgroundColor = UIColor.gray      // 背景色
         view.addSubview(monsterPartyLabel)      // Viewに追加する
 
-        // モンスターパーティボタン
-        for i in 0..<2 {    //2行
-            for j in 0..<5 {    //1行に5体表示
-                monsterPartyButton(x: (vcWidth - vcWidth * 0.9)/2 + monsterWidth * CGFloat(j), y: monsterPartyY + CGFloat(i) * monsterWidth, imageName: monsterParty[j+i*5].imageName, text: "\(j+i*5+1)", tileNum: i)
-            }
-        }
-        
-        // モンスターボックス
-        for i in 0..<7 {    //縦 7個
-            for j in 0..<6 {    // 横6個
-                eachMonsterButton(x:monsterBoxX + CGFloat(j) * eachMonsterWidth, y:monsterBoxY + CGFloat(i) * eachMonsterWidth, imageName:monsterBox[Int.random(in: 0..<monsterBox.count)].imageName)
-            }
-        }
-        
+//        // モンスターパーティボタン
+//        for i in 0..<2 {    //2行
+//            for j in 0..<5 {    //1行に5体表示
+//                monsterPartyButton(x: (vcWidth - vcWidth * 0.9)/2 + monsterWidth * CGFloat(j), y: monsterPartyY + CGFloat(i) * monsterWidth, imageName: monsterParty[j+i*5].imageName, text: "\(j+i*5+1)", tileNum: i)
+//            }
+//        }
+//        
+//        // モンスターボックス
+//        for i in 0..<7 {    //縦 7個
+//            for j in 0..<6 {    // 横6個
+//                eachMonsterButton(x:monsterBoxX + CGFloat(j) * eachMonsterWidth, y:monsterBoxY + CGFloat(i) * eachMonsterWidth, imageName:monsterBox[Int.random(in: 0..<monsterBox.count)].imageName)
+//            }
+//        }
+//        
         // タブボタン
         tabBotton(x: defaultX,imageName: "syounyudou.png", text: "ダンジョン")   // タブボタン ダンジョン
         tabBotton(x: defaultX+tabWidth+5,imageName: "mushi_mijinko.png", text: "モンスター")   // タブボタン モンスター
@@ -85,26 +85,26 @@ class HomeViewController: UIViewController {
         view.addSubview(label)      // Viewに追加する
     }
     
-    // モンスターパーティの各タイル数字のボタン
-    func monsterPartyButton(x: CGFloat, y: CGFloat, imageName:String, text:String, tileNum: Int){
-        let btn = UIButton()    // ボタン
-        btn.frame = CGRect(x:x, y:y, width:monsterWidth, height:monsterWidth)           // 位置とサイズ
-        let img = UIImage(named: imageName)
-        btn.setBackgroundImage(img, for: .normal)
-        btn.setTitle(text, for:UIControl.State.normal)        // タイル数字文字
-        btn.titleLabel?.font =  UIFont.systemFont(ofSize: 20)        // フォントサイズ
-        btn.setTitleColor(UIColor.black, for: .normal) // タイトルの色
-        btn.titleEdgeInsets = UIEdgeInsetsMake(40, 40, 0, 0)
-        btn.backgroundColor = UIColor.gray        // 背景色
-        btn.layer.borderColor = UIColor.brown.cgColor  // 枠線の色
-        btn.layer.borderWidth = 3.0 // 枠線の太さ
-        btn.layer.masksToBounds = true      // 角に丸みをつける.
-        btn.layer.cornerRadius = 6.0      // 丸みのサイズを設定する.
-        btn.addAction(.init { _ in monsterParty[tileNum] = clione }, for: .touchUpInside)
-//        btn.addTarget(self, action: #selector(monsterParty[tileNum] = clione), for: .touchUpInside)
-        view.addSubview(btn)    // Viewにボタンを追加
-    }
-    
+//    // モンスターパーティの各タイル数字のボタン
+//    func monsterPartyButton(x: CGFloat, y: CGFloat, imageName:String, text:String, tileNum: Int){
+//        let btn = UIButton()    // ボタン
+//        btn.frame = CGRect(x:x, y:y, width:monsterWidth, height:monsterWidth)           // 位置とサイズ
+//        let img = UIImage(named: imageName)
+//        btn.setBackgroundImage(img, for: .normal)
+//        btn.setTitle(text, for:UIControl.State.normal)        // タイル数字文字
+//        btn.titleLabel?.font =  UIFont.systemFont(ofSize: 20)        // フォントサイズ
+//        btn.setTitleColor(UIColor.black, for: .normal) // タイトルの色
+//        btn.titleEdgeInsets = UIEdgeInsetsMake(40, 40, 0, 0)
+//        btn.backgroundColor = UIColor.gray        // 背景色
+//        btn.layer.borderColor = UIColor.brown.cgColor  // 枠線の色
+//        btn.layer.borderWidth = 3.0 // 枠線の太さ
+//        btn.layer.masksToBounds = true      // 角に丸みをつける.
+//        btn.layer.cornerRadius = 6.0      // 丸みのサイズを設定する.
+//        btn.addAction(.init { _ in monsterParty[tileNum] = clione }, for: .touchUpInside)
+////        btn.addTarget(self, action: #selector(monsterParty[tileNum] = clione), for: .touchUpInside)
+//        view.addSubview(btn)    // Viewにボタンを追加
+//    }
+//    
     // モンスターボックス
     func eachMonsterButton(x:CGFloat, y:CGFloat, imageName:String){
         let btn = UIButton()    // ボタン

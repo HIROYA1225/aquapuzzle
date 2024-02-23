@@ -10,7 +10,6 @@ import UIKit
 
 let vcWidth: CGFloat = UIScreen.main.bounds.size.width  // 画面の横の大きさを取得
 let vcHeight: CGFloat = UIScreen.main.bounds.size.height    // 画面の縦の大きさを取得
-var arrayMonster: [UIImageView] = []
 
 /// A view controller representing the swift-2048 game. It serves mostly to tie a GameModel and a GameboardView
 /// together. Data flow works as follows: user input reaches the view controller and is forwarded to the model. Move
@@ -38,6 +37,12 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
     // Amount that the vertical alignment of the component views should differ from if they were centered
     let verticalViewOffset: CGFloat = 0.0
     var countMonster = 0
+    
+    // 経験値
+    var exp = 0
+
+    var arrayFish: [UIImageView] = []       // 進化する魚の配列
+    var countFish = 0   //進化前の画像を消すために設定
 
   //dimensionとthreshould
   init(dimension d: Int, threshold t: Int) {
@@ -112,8 +117,9 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
         
         // 初期生き物を設定
         let imageViewFish1 = UIImageView(frame: CGRect(x: (vcWidth-vcWidth*0.2)/2, y: vcWidth*0.6, width: vcWidth*0.2, height: vcWidth*0.2)) // 画像の位置と大きさを設定
-        imageViewFish1.image = UIImage(named: "fish_clione.png") // 画像を設定
+        imageViewFish1.image = UIImage(named: "taisaibou.png") // 画像を設定
         self.view.addSubview(imageViewFish1) // 画像を追加する
+        arrayFish.append(imageViewFish1)    // 配列に追加　進化後に進化前画像を削除するため
 
         // This nested function provides the x-position for a component view
         func xPositionToCenterView(_ v: UIView) -> CGFloat {
@@ -185,15 +191,6 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
     func followUp() {
         assert(model != nil)
         let m = model!
-          // 生物の表示と削除
-//        arrayMonster.append(monsterOfTileNum(tileNum: /*mergedTileNum*/ Int.random(in: 1..<11)))  // 生物配列に1つ値を追加 tileNumは一時的にランダム
-//        if arrayMonster.count > 0{
-//            view.addSubview(arrayMonster[countMonster]) // 配列追加した生物の画像を表示する
-//        }
-//                    countMonster += 1
-//        if countMonster > 3 { // 同時に3体まで表示
-//            arrayMonster[Int.random(in: 0..<countMonster)].isHidden = true  // 表示されている生物の中からランダムで消す
-//        }
 
       // 負けたときのアラート
       if m.userHasLost() {
@@ -205,6 +202,21 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
   //      alertView.addButton(withTitle: "OK")
         alertView.show()
       }
+        
+        exp += 1    // スワイプする度にexpが1増える(仮)
+      // 経験値expが一定値を超えると進化
+        // 生き物が進化
+        let imageViewFish2 = UIImageView(frame: CGRect(x: (vcWidth-vcWidth*0.2)/2, y: vcWidth*0.6, width: vcWidth*0.2, height: vcWidth*0.2)) // 画像の位置と大きさを設定
+        for i in 0...9{    // 上限は進化レベルの上限数と同じ
+            if exp == 1 + i*2{ // 経験値が閾値を超えると進化　exp=1,3,5...のとき(仮)
+                imageViewFish2.image = UIImage(named: creatureGroup[i].imageName) // 進化後の画像を設定
+                countFish += 1
+                arrayFish[countFish-1].isHidden = true  // 進化前の生き物画像消去
+                self.view.addSubview(imageViewFish2) // 進化後の画像を表示
+                arrayFish.append(imageViewFish2)    // 配列に追加　進化後に進化前画像を削除するため
+            }
+        }
+
 //        // 勝ったとき
 //      let (userWon, _) = m.userHasWon()
 //      if userWon {
@@ -318,15 +330,15 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
 }
 
 // タイル数字に応じた生物のImageViewを返す
-func monsterOfTileNum(tileNum: Int) -> UIImageView{
-    let monsterSize = 30 + (tileNum - 1) * 12    // タイル数字に応じた生物の大きさ
-    return  monsterImageView(imageName: monsterParty[tileNum - 1].imageName, monsterSize: monsterSize)    // 生物のImageView
-}
+//func monsterOfTileNum(tileNum: Int) -> UIImageView{
+//    let monsterSize = 30 + (tileNum - 1) * 12    // タイル数字に応じた生物の大きさ
+//    return  monsterImageView(imageName: creatureGroup[tileNum - 1].imageName, monsterSize: monsterSize)    // 生物のImageView
+//}
 
 // 指定された画像ファイルとサイズで生物のImageViewを返す
-func monsterImageView(imageName: String, monsterSize: Int) -> UIImageView{    // 引数：画像ファイル名, 生物の大きさ 戻り値：imageView
-    let interval = 20   // 生物出現位置の間隔
-    let monsterImageView = UIImageView(frame: CGRect(x: interval * Int.random(in: 1..<300 / interval) , y: interval * Int.random(in: 100 / interval..<360 / interval), width: monsterSize, height: monsterSize)) // 生物出現位置と大きさを設定
-    monsterImageView.image = UIImage(named: imageName) // 画像を設定
-    return monsterImageView
-}
+//func monsterImageView(imageName: String, monsterSize: Int) -> UIImageView{    // 引数：画像ファイル名, 生物の大きさ 戻り値：imageView
+//    let interval = 20   // 生物出現位置の間隔
+//    let monsterImageView = UIImageView(frame: CGRect(x: interval * Int.random(in: 1..<300 / interval) , y: interval * Int.random(in: 100 / interval..<360 / interval), width: monsterSize, height: monsterSize)) // 生物出現位置と大きさを設定
+//    monsterImageView.image = UIImage(named: imageName) // 画像を設定
+//    return monsterImageView
+//}

@@ -13,7 +13,7 @@ protocol ScoreViewProtocol {
   func scoreChanged(to s: Int)
 }
 
-/// スコアビュー(敵HP)表示
+// スコアビュー表示
 class ScoreView : UIView, ScoreViewProtocol {
   var score : Int = 0 {
     didSet {

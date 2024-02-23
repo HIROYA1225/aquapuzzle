@@ -5,38 +5,34 @@
 //  Created by YOSUKE on 2023/11/11.
 //  Copyright © 2023 Austin Zheng. All rights reserved.
 //
+//  生き物のデータ管理
 
 import SwiftUI
 
-//モンスターのインスタンス
-let mijinko = Monster(level: 1, rare: 1, cost: 1, HP: 10, tileNum: 1, attack: 1, recovery: 0, imageName: "mushi_mijinko.png")   // tileNum:1のモンスター
-let planaria = Monster(level: 1, rare: 1, cost: 1, HP: 8, tileNum: 1, attack: 1, recovery: 1, imageName: "planaria.png")   // tileNum:1のモンスター
-let clione = Monster(level: 1, rare: 1, cost: 1, HP: 20, tileNum: 2, attack: 3, recovery: 1, imageName: "fish_clione.png")  // tileNum:2のモンスター
-let mendako = Monster(level: 1, rare: 1, cost: 1, HP: 30, tileNum: 3, attack: 5, recovery: 0, imageName: "shinkai_mendako_open.png")    // tileNum:3のモンスター
-let tatsunootoshigo = Monster(level: 1, rare: 1, cost: 1, HP: 25, tileNum: 3, attack: 7, recovery: 0, imageName: "tatsunootoshigo.png")    // tileNum:3のモンスター
-let harisenbon = Monster(level: 1, rare: 1, cost: 1, HP: 35, tileNum: 4, attack: 7, recovery: 0, imageName: "harisenbon.png")    // tileNum:4のモンスター
-let akaei = Monster(level: 1, rare: 1, cost: 1 , HP: 40, tileNum: 5, attack: 10, recovery: 0, imageName: "akaei.png")    // tileNum:5のモンスター
-let ikkaku = Monster(level: 1, rare: 1, cost: 1 , HP: 50, tileNum: 6, attack: 15, recovery: 0, imageName: "ikkaku.png")    // tileNum:6のモンスター
-let dolphin = Monster(level: 1, rare: 1, cost: 1 , HP: 50, tileNum: 6, attack: 15, recovery: 0, imageName: "dolphin.png")    // tileNum:6のモンスター
-let ryugunotsukai = Monster(level: 1, rare: 1, cost: 2, HP: 60, tileNum: 7, attack: 20, recovery: 10, imageName: "ryugunotsukai.png")    // tileNum:7のモンスター
-let megalodon = Monster(level: 1, rare: 1, cost: 2, HP: 70, tileNum: 8, attack: 50, recovery: 0, imageName: "megalodon.png")    // tileNum:8のモンスター
-let jinbeizame = Monster(level: 1, rare: 1, cost: 2 , HP: 100, tileNum: 9, attack: 40, recovery: 5, imageName: "jinbeizame.png")    // tileNum:9のモンスター
-let daiouika = Monster(level: 1, rare: 1, cost: 2 , HP: 90, tileNum: 10, attack: 60, recovery: 0, imageName: "daiouika.png")    // tileNum:10のモンスター
+// 生き物のインスタンス
+let mijinko = creature(level: 1, rarity: 0.5, imageName: "mushi_mijinko.png")
+let planaria = creature(level: 1, rarity: 0.5, imageName: "planaria.png")
+let clione = creature(level: 2, rarity: 1, imageName: "fish_clione.png")
+let mendako = creature(level: 3, rarity: 1, imageName: "shinkai_mendako_open.png")
+let tatsunootoshigo = creature(level: 4, rarity: 1, imageName: "tatsunootoshigo.png")
+let harisenbon = creature(level: 5, rarity: 1, imageName: "harisenbon.png")
+let akaei = creature(level: 6, rarity: 1, imageName: "akaei.png")
+let ikkaku = creature(level: 7, rarity: 1, imageName: "ikkaku.png")
+let dolphin = creature(level: 8, rarity: 1, imageName: "dolphin.png")
+let ryugunotsukai = creature(level: 9, rarity: 1, imageName: "ryugunotsukai.png")
+let megalodon = creature(level: 10, rarity: 1, imageName: "megalodon.png")
+let jinbeizame = creature(level: 11, rarity: 1, imageName: "jinbeizame.png")
+let daiouika = creature(level: 12, rarity: 1, imageName: "daiouika.png")
 
-// モンスターボックス
-var monsterBox = [mijinko, planaria, clione, mendako, tatsunootoshigo, harisenbon, akaei, ikkaku, dolphin, ryugunotsukai, megalodon, jinbeizame, daiouika]
+// 生き物図鑑
+var creatureBook = [mijinko, planaria, clione, mendako, tatsunootoshigo, harisenbon, akaei, ikkaku, dolphin, ryugunotsukai, megalodon, jinbeizame, daiouika]
 
-//モンスター パーティ
-var monsterParty = [mijinko, clione, mendako, harisenbon, akaei, ikkaku, ryugunotsukai, megalodon, jinbeizame, daiouika]
+//生き物 グループ ※進化レベルごとに分ける？
+var creatureGroup = [mijinko, clione, mendako, harisenbon, akaei, ikkaku, ryugunotsukai, megalodon, jinbeizame, daiouika]
 
-//モンスター 構造体
-struct Monster {
-    var level: Int = 1  // レベル
-    var rare: Int   // レア度
-    var cost: Int   // コスト
-    var HP: Int     // HP
-    var tileNum: Int   // タイル数字
-    var attack: Int    // 攻撃力
-    var recovery: Int  // 回復力
+//生き物 構造体
+struct creature {
+    var level: Int    // 進化レベル
+    var rarity: Double   // レア度
     var imageName: String  //画像ファイル名
 }
