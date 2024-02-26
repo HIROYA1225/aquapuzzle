@@ -23,6 +23,7 @@
 		33A0AD492B0867B200BA5C16 /* MonsterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A0AD482B0867B200BA5C16 /* MonsterView.swift */; };
 		33A3DCEA2B01AAD1003268B8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3DCE92B01AAD1003268B8 /* HomeViewController.swift */; };
 		33D06C012AFF886500D80BB7 /* MonsterProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D06C002AFF886500D80BB7 /* MonsterProvider.swift */; };
+		454A81E82B7D04F600674E0C /* MonsterBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454A81E72B7D04F600674E0C /* MonsterBookView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		33A0AD482B0867B200BA5C16 /* MonsterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonsterView.swift; sourceTree = "<group>"; };
 		33A3DCE92B01AAD1003268B8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		33D06C002AFF886500D80BB7 /* MonsterProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonsterProvider.swift; sourceTree = "<group>"; };
+		454A81E72B7D04F600674E0C /* MonsterBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MonsterBookView.swift; path = Views/MonsterBookView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 				1AF8F0B519403AA400A7049E /* AccessoryViews.swift */,
 				1AE8BEEF193EEE24007592BA /* GameboardView.swift */,
 				1AE8BEF5193EF4B6007592BA /* TileView.swift */,
+				454A81E72B7D04F600674E0C /* MonsterBookView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				1AE339B2193DCF110081FFA4 /* GameModel.swift in Sources */,
 				1AF8F0B81941841000A7049E /* AuxiliaryModels.swift in Sources */,
 				1AE8BEF0193EEE24007592BA /* GameboardView.swift in Sources */,
+				454A81E82B7D04F600674E0C /* MonsterBookView.swift in Sources */,
 				33D06C012AFF886500D80BB7 /* MonsterProvider.swift in Sources */,
 				33A0AD492B0867B200BA5C16 /* MonsterView.swift in Sources */,
 			);
